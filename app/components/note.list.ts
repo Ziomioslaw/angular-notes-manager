@@ -7,10 +7,11 @@ import { NoteService } from 'app/services/note';
   moduleId: module.id,
   selector: 'note-list',
   templateUrl: '/app/templates/note.list.html',
-  providers: [ NoteService ]
+  providers: [ NoteService ],
+  styleUrls: [ '../styles/note.list.css' ]
 })
 export class NoteListComponent implements OnInit {
-    @Output() notify: EventEmitter<Note> = new EventEmitter<Note>();
+    @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter<Note>();
     notes: Note[];
 
     constructor(private noteService: NoteService) { }
@@ -20,7 +21,7 @@ export class NoteListComponent implements OnInit {
     }
 
     selectNote(note: Note): boolean {
-        this.notify.emit(note);
+        this.noteSelectionChange.emit(note);
 
         return false;
     }

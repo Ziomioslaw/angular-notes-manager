@@ -9,7 +9,7 @@ import { Note } from '/app/note';
 export class AppComponent {
     @Input() selectedNote: Note;
 
-    onNotity(note: Note) {
+    selectedNoteChange(note: Note) {
         this.selectedNote = note;
     }
 }
