@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-
 import { Note } from 'app/note';
 
 @Component({

@@ -1,5 +1,5 @@
 <h1>Notes Manager</h1>
 
-<note-list></note-list>
+<note-list (notify)="onNotity($event)"></note-list>
 
-<note-detail></note-detail>
+<note-detail [note]="selectedNote"></note-detail>
