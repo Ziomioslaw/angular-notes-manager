@@ -12,8 +12,7 @@ export class LocalStorageService {
     public loadNotes(): Note[] {
         let rawData = localStorage.getItem(LocalStorageService.LOCAL_STORAGE_KEY);
         let data = JSON.parse(rawData);
-        let notes = new Array<Note>();
 
-        return notes.map(r => new Note(r.text));
+        return data.map(r => new Note(r.text));
     }
 }
