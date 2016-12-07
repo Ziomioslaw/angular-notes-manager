@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 
 import { Note } from './note';
+import { LocalStorageService } from './local.storage.service'
 
 @Injectable()
 export class NoteService {
-  private notes: Note[] = [];
+    private notes: Note[] = null;
 
-  constructor() {
-      this.notes.push(new Note("sdsdsd"));
-  }
+    constructor(private storageService: LocalStorageService) {}
 
-  getAll() {
-    return this.notes;
-  }
+    getAll() {
+        if (this.notes === null) {
+            this.notes = this.storageService.loadNotes();
+        }
+
+        return this.notes;
+    }
 }

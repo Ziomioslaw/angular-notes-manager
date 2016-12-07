@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NoteDetailComponent } from './note.detail.component';
 import { NoteListComponent } from './note.list.component';
 
+import { LocalStorageService } from './local.storage.service';
 import { NoteService } from './note.service';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { NoteService } from './note.service';
         NoteListComponent
     ],
     providers: [
+        LocalStorageService,
         NoteService
     ],
     bootstrap: [

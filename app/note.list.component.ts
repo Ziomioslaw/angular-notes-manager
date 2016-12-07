@@ -12,15 +12,10 @@ import { NoteService } from './note.service';
 
 export class NoteListComponent implements OnInit {
     notes: Note[];
-    selectedNote: Note;
 
-    constructor(private service: NoteService) { }
+    constructor(private noteService: NoteService) { }
 
     ngOnInit() {
-        this.notes = this.service.getAll();
-    }
-
-    selectHero(note: Note) {
-        this.selectedNote = note;
+        this.notes = this.noteService.getAll();
     }
 }
