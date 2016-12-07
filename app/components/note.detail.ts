@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
-import { Note } from './note';
+import { Note } from 'app/note';
 
 @Component({
     moduleId: module.id,
     selector: 'note-detail',
-    templateUrl: 'templates/note.detail.html'
+    templateUrl: '/app/templates/note.detail.html'
 })
 
 export class NoteDetailComponent {

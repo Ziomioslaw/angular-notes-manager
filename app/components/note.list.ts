@@ -1,12 +1,12 @@
 import { Component, OnInit }   from '@angular/core';
 
-import { Note } from './note';
-import { NoteService } from './services/note';
+import { Note } from 'app/note';
+import { NoteService } from 'app/services/note';
 
 @Component({
   moduleId: module.id,
   selector: 'note-list',
-  templateUrl: 'templates/note.list.html',
+  templateUrl: '/app/templates/note.list.html',
   providers: [ NoteService ]
 })
 

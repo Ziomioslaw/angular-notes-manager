@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Note } from '../note';
-import { LocalStorageService } from './local.storage'
+import { Note } from 'app/note';
+import { LocalStorageService } from 'app/services/local.storage'
 
 @Injectable()
 export class NoteService {
