@@ -11,6 +11,7 @@ import { NoteTitlePipe } from './pipes/note.title.pipe';
 import { IntervalService } from './services/interval';
 import { IdGeneratorService } from './services/id.generator';
 import { LocalStorageService } from './services/local.storage';
+import { BrowserInteractionService } from './services/browser.interaction';
 import { NoteService } from './services/note';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NoteService } from './services/note';
         LocalStorageService,
         IdGeneratorService,
         NoteService,
-        IntervalService
+        IntervalService,
+        BrowserInteractionService
     ],
     bootstrap: [
         AppComponent

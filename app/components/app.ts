@@ -1,13 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { Note } from '../entities/note';
+
 import { NoteService } from '../services/note';
 import { IntervalService } from '../services/interval';
+import { BrowserInteractionService } from '../services/browser.interaction';
 
 @Component({
     moduleId: module.id,
     selector: 'app',
     templateUrl: '/app/templates/app.html',
-    providers: [ NoteService, IntervalService ],
+    providers: [
+        NoteService,
+        IntervalService,
+        BrowserInteractionService
+    ],
     styleUrls: [ '../styles/app.css' ]
 })
 export class AppComponent {
@@ -19,7 +25,8 @@ export class AppComponent {
 
     constructor(
             private noteService: NoteService,
-            private intervalService: IntervalService
+            private intervalService: IntervalService,
+            private browserInteractionService: BrowserInteractionService
         ) {
         this.setNotes([]);
     }
@@ -38,7 +45,7 @@ export class AppComponent {
         this.selectedNote = note;
     }
 
-    addNote(event: any) {
+    addNoteButtonClick(event: any) {
         const newNote = this.noteService.createNote();
 
         this.notes.push(newNote);
@@ -52,6 +59,16 @@ export class AppComponent {
 
         this.saveNote(this.selectedNote)
             .then(() => this.startTimeInterval());
+    }
+
+    deleteNoteButtonClick(event: any) {
+        if (!this.browserInteractionService.question('Do you realy wish to delete the note?')) {
+            return;
+        }
+
+        // TODO:
+        //this.noteService.deleteNote(this.selectedNote)
+        //    .then(() => this.setNotes(this.notes));
     }
 
     private setNotes(notes: Note[]) {
