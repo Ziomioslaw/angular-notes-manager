@@ -38,7 +38,9 @@ section.app article textarea {
     height: 50em;
 }
 
-
+section.app a.workInProgress {
+    font-weight: bold;
+}
 
 
 aside li {

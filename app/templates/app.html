@@ -1,7 +1,7 @@
 <section class="app">
     <header>
         [<a (click)="addNote($event)">New</a>]
-        [<a (click)="saveNoteButtonClick($event)">{{ isSavingInProgress ? 'Saving...' : 'Save' }}</a>]
+        [<a [class.workInProgress]="isSavingInProgress" (click)="saveNoteButtonClick($event)">{{ isSavingInProgress ? 'Saving...' : 'Save' }}</a>]
     </header>
     <article>
         <note-detail [note]="selectedNote"></note-detail>
