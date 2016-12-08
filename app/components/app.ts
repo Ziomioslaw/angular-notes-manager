@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Note } from '../entities/note';
 import { NoteService } from '../services/note';
+import { IntervalService } from '../services/interval';
 
 @Component({
     selector: 'app',
@@ -9,10 +10,16 @@ import { NoteService } from '../services/note';
     styleUrls: [ '/app/styles/app.css' ]
 })
 export class AppComponent {
+    private static readonly INTERVAL_TIME = 5000;
+
     @Input() selectedNote: Note;
     notes: Note[] = null;
 
-    constructor(private noteService: NoteService) {
+    constructor(
+            private noteService: NoteService,
+            private intervalService: IntervalService
+        ) {
+        intervalService.setInterval(AppComponent.INTERVAL_TIME, () => this.saveNote(null));
     }
 
     ngOnInit() {
