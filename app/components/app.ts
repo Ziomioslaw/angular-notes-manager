@@ -4,10 +4,11 @@ import { NoteService } from '../services/note';
 import { IntervalService } from '../services/interval';
 
 @Component({
+    moduleId: module.id,
     selector: 'app',
     templateUrl: '/app/templates/app.html',
     providers: [ NoteService, IntervalService ],
-    styleUrls: [ '/app/styles/app.css' ]
+    styleUrls: [ '../styles/app.css' ]
 })
 export class AppComponent {
     private static readonly INTERVAL_TIME = 5000;

@@ -16,49 +16,10 @@ header > span {
     top: 0;
 }
 
-
-
-
-section.app {
-    width: 100%;
-}
-
-section.app > aside {
-    width: 30%;
-    float: right;
-}
-
-section.app > article {
-    width: 69%;
-    float: left;
-}
-
-section.app article textarea {
-    width: 100%;
-    height: 50em;
-}
-
-section.app a.workInProgress {
-    font-weight: bold;
-}
-
-
-aside li {
-    padding: 0.5em 1em;
-}
-
-aside li a.empty {
-    font-style: italic;
-    color: lightgray;
-}
-
 a:hover {
     cursor: pointer;
     color: gray;
 }
-
-
-
 
 footer {
     clear: both;

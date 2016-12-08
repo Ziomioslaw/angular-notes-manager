@@ -1,0 +1,8 @@
+:host li {
+    padding: 0.5em 1em;
+}
+
+:host li a.empty {
+    font-style: italic;
+    color: lightgray;
+}
