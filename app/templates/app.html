@@ -10,6 +10,7 @@
     <aside>
         <note-list
             [notes]="notes"
+            [selectedNote]="selectedNote"
             (noteSelectionChange)="selectedNoteChange($event)"
             (noteDeleted)="deleteNoteFromList($event)"
         >
