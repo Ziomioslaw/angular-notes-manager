@@ -14,18 +14,18 @@ export class NoteService {
     ) {
     }
 
-    getNotes(): Note[] {
-        if (this.notes === null) {
-            this.notes = this.storageService.loadNotes();
-            this.notes.forEach(n => this.idGeneratorService.checkNumber(n.id));
-        }
+    getNotes(): Promise<Note[]> {
+        return this.storageService
+            .loadNotes()
+            .then(notes => {
+                notes.forEach(n => this.idGeneratorService.checkNumber(n.id));
 
-        return this.notes;
+                return notes;
+            });
     }
 
     saveNotes(notes: Note[]): void {
         this.notes = notes;
-
         this.storageService.saveNotes(this.notes);
     }
 

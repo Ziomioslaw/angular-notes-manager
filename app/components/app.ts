@@ -6,7 +6,7 @@ import { IntervalService } from '../services/interval';
 @Component({
     selector: 'app',
     templateUrl: '/app/templates/app.html',
-    providers: [ NoteService ],
+    providers: [ NoteService, IntervalService ],
     styleUrls: [ '/app/styles/app.css' ]
 })
 export class AppComponent {
@@ -19,16 +19,16 @@ export class AppComponent {
             private noteService: NoteService,
             private intervalService: IntervalService
         ) {
-        this.setTimeInterval();
+        this.setNotes([]);
     }
 
     ngOnInit() {
-        this.notes = this.noteService.getNotes();
-        if (this.notes.length === 0) {
-            this.notes.push(this.noteService.createNote());
-        }
-
-        this.selectedNote = this.notes[0];
+        this.noteService
+            .getNotes()
+            .then(notes => {
+                this.setNotes(notes);
+                this.startTimeInterval();
+            });
     }
 
     selectedNoteChange(note: Note) {
@@ -44,10 +44,19 @@ export class AppComponent {
 
     saveNote(event: any) {
         this.saveNotes();
-        this.setTimeInterval();
+        this.startTimeInterval();
     }
 
-    private setTimeInterval() {
+    private setNotes(notes: Note[]) {
+        this.notes = notes;
+        if (this.notes.length === 0) {
+            this.notes.push(this.noteService.createNote());
+        }
+
+        this.selectedNote = this.notes[0];
+    }
+
+    private startTimeInterval() {
         this.intervalService.clearInterval();
         this.intervalService.setInterval(AppComponent.INTERVAL_TIME, () => this.saveNotes());
     }
