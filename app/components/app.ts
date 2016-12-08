@@ -19,7 +19,7 @@ export class AppComponent {
             private noteService: NoteService,
             private intervalService: IntervalService
         ) {
-        intervalService.setInterval(AppComponent.INTERVAL_TIME, () => this.saveNote(null));
+        this.setTimeInterval();
     }
 
     ngOnInit() {
@@ -43,6 +43,16 @@ export class AppComponent {
     }
 
     saveNote(event: any) {
+        this.saveNotes();
+        this.setTimeInterval();
+    }
+
+    private setTimeInterval() {
+        this.intervalService.clearInterval();
+        this.intervalService.setInterval(AppComponent.INTERVAL_TIME, () => this.saveNotes());
+    }
+
+    private saveNotes() {
         this.noteService.saveNotes(this.notes);
     }
 }
