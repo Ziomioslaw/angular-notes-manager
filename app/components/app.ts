@@ -28,6 +28,13 @@ export class AppComponent {
         this.selectedNote = note;
     }
 
+    addNote(event: any) {
+        const newNote = new Note('');
+
+        this.notes.push(newNote);
+        this.selectedNoteChange(newNote);
+    }
+
     saveNote(event: any) {
         this.noteService.saveNotes(this.notes);
     }
