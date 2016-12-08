@@ -9,11 +9,17 @@ export class NoteService {
 
     constructor(private storageService: LocalStorageService) {}
 
-    getAll() {
+    getNotes(): Note[] {
         if (this.notes === null) {
             this.notes = this.storageService.loadNotes();
         }
 
         return this.notes;
+    }
+
+    saveNotes(notes: Note[]): void {
+        this.notes = notes;
+
+        this.storageService.saveNotes(this.notes);
     }
 }

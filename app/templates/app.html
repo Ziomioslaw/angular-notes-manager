@@ -1,9 +1,14 @@
 <section class="app">
+    <header>
+        <a (click)="saveNote($event)">[Save]</a>
+    </header>
     <article>
         <note-detail [note]="selectedNote"></note-detail>
     </article>
-
     <aside>
-        <note-list (noteSelectionChange)="selectedNoteChange($event)"></note-list>
+        <note-list
+            [notes]="notes"
+            (noteSelectionChange)="selectedNoteChange($event)">
+        </note-list>
     </aside>
 </section>

@@ -8,4 +8,8 @@ import { Note } from '../note';
 })
 export class NoteDetailComponent {
   @Input() note: Note;
+
+  onKey(event: any): void {
+      this.note.text = event.target.value;
+  }
 }
