@@ -20,12 +20,19 @@ export class LocalStorageService {
         this.saveRawDataIntoLocalStorage(rawData);
     }
 
+    public deleteNote(note: Note): void {
+        const allNotes = this.loadRawDataFromLocalStorage();
+        const noteWithoutOne = allNotes.filter((x:any) => x.id != note.id);
+
+        this.saveRawDataIntoLocalStorage(noteWithoutOne);
+    }
+
     public loadNotes(): Note[] {
         return this.loadRawDataFromLocalStorage()
             .map((r:any) => new Note(r.text, r.id));
     }
 
-    private loadRawDataFromLocalStorage() {
+    private loadRawDataFromLocalStorage(): any[] {
         const rawData = localStorage.getItem(LocalStorageService.LOCAL_STORAGE_KEY)
         if (!rawData) {
             return [];
@@ -34,7 +41,8 @@ export class LocalStorageService {
         return JSON.parse(rawData);
     }
 
-    private saveRawDataIntoLocalStorage(rawNotes: any) {
+    private saveRawDataIntoLocalStorage(rawNotes: any[]) {
+console.log('>>>', rawNotes);
         let rawData = JSON.stringify(rawNotes);
 
         localStorage.setItem(LocalStorageService.LOCAL_STORAGE_KEY, rawData);

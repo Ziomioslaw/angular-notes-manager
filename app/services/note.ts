@@ -38,4 +38,11 @@ export class NoteService {
     createNote(): Note {
         return new Note('', this.idGeneratorService.getIdForNew());
     }
+
+    deleteNote(note: Note) {
+        return new Promise((resolve, reject) => {
+                this.storageService.deleteNote(note);
+                resolve(note);
+            });
+    }
 }

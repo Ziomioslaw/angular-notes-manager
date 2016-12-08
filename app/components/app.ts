@@ -66,9 +66,10 @@ export class AppComponent {
             return;
         }
 
-        // TODO:
-        //this.noteService.deleteNote(this.selectedNote)
-        //    .then(() => this.setNotes(this.notes));
+        this.notes = this.notes.filter((n:Note) => n.id != this.selectedNote.id);
+        this.setNotes(this.notes);
+
+        this.noteService.deleteNote(this.selectedNote);
     }
 
     private setNotes(notes: Note[]) {
