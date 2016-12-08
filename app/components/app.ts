@@ -10,14 +10,13 @@ import { NoteService } from '../services/note';
 })
 export class AppComponent {
     @Input() selectedNote: Note;
-    notes: Note[];
+    notes: Note[] = null;
 
     constructor(private noteService: NoteService) {
     }
 
     ngOnInit() {
         this.notes = this.noteService.getNotes();
-
         if (this.notes.length === 0) {
             this.notes.push(new Note(''));
         }
