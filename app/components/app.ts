@@ -14,6 +14,7 @@ export class AppComponent {
 
     @Input() selectedNote: Note;
     notes: Note[] = null;
+    isSavingInProgress: boolean = false;
 
     constructor(
             private noteService: NoteService,
@@ -42,9 +43,13 @@ export class AppComponent {
         this.selectedNoteChange(newNote);
     }
 
-    saveNote(event: any) {
-        this.saveNotes();
-        this.startTimeInterval();
+    saveNoteButtonClick(event: any) {
+        if (this.isSavingInProgress) {
+            return;
+        }
+
+        this.saveNotes()
+            .then(() => this.startTimeInterval());
     }
 
     private setNotes(notes: Note[]) {
@@ -61,7 +66,10 @@ export class AppComponent {
         this.intervalService.setInterval(AppComponent.INTERVAL_TIME, () => this.saveNotes());
     }
 
-    private saveNotes() {
-        this.noteService.saveNotes(this.notes);
+    private saveNotes(): Promise<Note> {
+        this.isSavingInProgress = true;
+
+        return this.noteService.saveNotes(this.notes)
+            .then(() => this.isSavingInProgress = false);
     }
 }

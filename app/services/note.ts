@@ -23,9 +23,9 @@ export class NoteService {
 
     saveNotes(notes: Note[]): Promise<Note[]> {
         return new Promise((resolve, reject) => {
-            this.storageService.saveNotes(notes);
-            resolve(notes);
-          });
+                this.storageService.saveNotes(notes);
+                resolve(notes);
+            });
     }
 
     createNote(): Note {
