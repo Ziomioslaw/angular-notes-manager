@@ -45,6 +45,10 @@ export class AppComponent {
         this.selectedNote = note;
     }
 
+    deleteNoteFromList(note: Note) {
+        this.deleteNote(note);
+    }
+
     addNoteButtonClick(event: any) {
         const newNote = this.noteService.createNote();
 
@@ -62,14 +66,20 @@ export class AppComponent {
     }
 
     deleteNoteButtonClick(event: any) {
+        this.deleteNote(this.selectedNote);
+    }
+
+    private deleteNote(note: Note) {
         if (!this.browserInteractionService.question('Do you realy wish to delete the note?')) {
             return;
         }
 
-        this.notes = this.notes.filter((n:Note) => n.id != this.selectedNote.id);
-        this.setNotes(this.notes);
+        this.notes = this.notes.filter((n:Note) => n.id != note.id);
+        if (note == this.selectedNote) {
+            this.setNotes(this.notes);
+        }
 
-        this.noteService.deleteNote(this.selectedNote);
+        this.noteService.deleteNote(note);
     }
 
     private setNotes(notes: Note[]) {
