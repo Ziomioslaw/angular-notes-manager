@@ -1,5 +1,5 @@
 <ol>
-    <li *ngFor="let note of notes" [class.selected]="note == selectedNote">
-        <a [class.empty]="!note.text" (click)="selectNote(note)">{{ note | noteTitle }}</a><span>[<a (click)="deleteNote(note)">Delete</a>]</span>
+    <li *ngFor="let note of notes" [class.selected]="note == selectedNote" (click)="selectNote(note)">
+        <a [class.empty]="!note.text">{{ note | noteTitle }}</a><span>[<a (click)="deleteNote(note)">Delete</a>]</span>
     </li>
 </ol>
