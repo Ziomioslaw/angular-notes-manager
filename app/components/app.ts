@@ -53,7 +53,7 @@ export class AppComponent {
             this.notes.push(this.noteService.createNote());
         }
 
-        this.selectedNote = this.notes[0];
+        this.selectedNoteChange(this.notes[0]);
     }
 
     private startTimeInterval() {

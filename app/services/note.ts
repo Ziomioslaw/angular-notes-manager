@@ -6,8 +6,6 @@ import { IdGeneratorService } from './id.generator';
 
 @Injectable()
 export class NoteService {
-    private notes: Note[] = null;
-
     constructor(
         private storageService: LocalStorageService,
         private idGeneratorService: IdGeneratorService
@@ -15,8 +13,7 @@ export class NoteService {
     }
 
     getNotes(): Promise<Note[]> {
-        return this.storageService
-            .loadNotes()
+        return Promise.resolve(this.storageService.loadNotes())
             .then(notes => {
                 notes.forEach(n => this.idGeneratorService.checkNumber(n.id));
 
@@ -24,9 +21,11 @@ export class NoteService {
             });
     }
 
-    saveNotes(notes: Note[]): void {
-        this.notes = notes;
-        this.storageService.saveNotes(this.notes);
+    saveNotes(notes: Note[]): Promise<Note[]> {
+        return new Promise((resolve, reject) => {
+            this.storageService.saveNotes(notes);
+            resolve(notes);
+          });
     }
 
     createNote(): Note {

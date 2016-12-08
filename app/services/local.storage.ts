@@ -9,16 +9,14 @@ export class LocalStorageService {
         localStorage.setItem(LocalStorageService.LOCAL_STORAGE_KEY, rawData);
     }
 
-    public loadNotes(): Promise<Note[]> {
-        return Promise.resolve(localStorage.getItem(LocalStorageService.LOCAL_STORAGE_KEY))
-            .then(rawData => {
-                if (!rawData) {
-                    return [];
-                }
+    public loadNotes(): Note[] {
+        const rawData = localStorage.getItem(LocalStorageService.LOCAL_STORAGE_KEY)
+        if (!rawData) {
+            return [];
+        }
 
-                let rawNotes = JSON.parse(rawData);
+        const rawNotes = JSON.parse(rawData);
 
-                return rawNotes.map((r:any) => new Note(r.text, r.id));
-            });
+        return rawNotes.map((r:any) => new Note(r.text, r.id));
     }
 }
