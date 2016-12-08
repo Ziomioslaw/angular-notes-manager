@@ -29,7 +29,7 @@ export class NoteService {
         this.storageService.saveNotes(this.notes);
     }
 
-    getNewNotes(): Note {
+    createNote(): Note {
         return new Note('', this.idGeneratorService.getIdForNew());
     }
 }
