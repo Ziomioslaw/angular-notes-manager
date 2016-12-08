@@ -6,3 +6,7 @@
     font-style: italic;
     color: lightgray;
 }
+
+:host li span {
+    float: right;
+}

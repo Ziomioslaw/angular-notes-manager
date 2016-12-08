@@ -11,9 +11,16 @@ import { Note } from '../entities/note';
 export class NoteListComponent {
     @Input() notes: Note[];
     @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter<Note>();
+    @Output() noteDeleted: EventEmitter<Note> = new EventEmitter<Note>();
 
     selectNote(note: Note): boolean {
         this.noteSelectionChange.emit(note);
+
+        return false;
+    }
+
+    deleteNote(note: Note): boolean {
+        this.noteDeleted.emit(note);
 
         return false;
     }
