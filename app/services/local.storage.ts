@@ -44,7 +44,6 @@ export class LocalStorageService {
     }
 
     private saveRawDataIntoLocalStorage(rawNotes: any[]) {
-console.log('>>>', rawNotes);
         let rawData = JSON.stringify(rawNotes);
 
         localStorage.setItem(LocalStorageService.LOCAL_STORAGE_KEY, rawData);
