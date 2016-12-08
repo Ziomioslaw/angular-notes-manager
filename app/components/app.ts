@@ -34,6 +34,7 @@ export class AppComponent {
     }
 
     selectedNoteChange(note: Note) {
+        this.saveNote(this.selectedNote);
         this.selectedNote = note;
     }
 
@@ -49,7 +50,7 @@ export class AppComponent {
             return;
         }
 
-        this.saveNotes()
+        this.saveNote(this.selectedNote)
             .then(() => this.startTimeInterval());
     }
 
@@ -59,18 +60,21 @@ export class AppComponent {
             this.notes.push(this.noteService.createNote());
         }
 
-        this.selectedNoteChange(this.notes[0]);
+        this.selectedNote = this.notes[0];
     }
 
     private startTimeInterval() {
         this.intervalService.clearInterval();
-        this.intervalService.setInterval(AppComponent.INTERVAL_TIME, () => this.saveNotes());
+        this.intervalService.setInterval(
+                AppComponent.INTERVAL_TIME,
+                () => this.saveNote(this.selectedNote)
+            );
     }
 
-    private saveNotes(): Promise<Note> {
+    private saveNote(note: Note): Promise<Note> {
         this.isSavingInProgress = true;
 
-        return this.noteService.saveNotes(this.notes)
+        return this.noteService.saveNote(note)
             .then(() => this.isSavingInProgress = false);
     }
 }

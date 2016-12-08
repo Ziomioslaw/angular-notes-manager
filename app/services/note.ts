@@ -28,6 +28,13 @@ export class NoteService {
             });
     }
 
+    saveNote(note: Note): Promise<Note> {
+        return new Promise((resolve, reject) => {
+                this.storageService.saveNote(note);
+                resolve(note);
+            });
+    }
+
     createNote(): Note {
         return new Note('', this.idGeneratorService.getIdForNew());
     }
