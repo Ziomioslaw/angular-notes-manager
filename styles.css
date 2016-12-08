@@ -16,6 +16,9 @@ header > span {
     top: 0;
 }
 
+
+
+
 section.app {
     width: 100%;
 }
@@ -29,6 +32,21 @@ section.app > article {
     width: 69%;
     float: left;
 }
+
+
+
+
+
+aside li {
+    padding: 0.5em 1em;
+}
+
+aside li a:hover {
+    cursor: pointer;
+}
+
+
+
 
 footer {
     position: absolute;
