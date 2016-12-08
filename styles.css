@@ -45,6 +45,11 @@ aside li {
     padding: 0.5em 1em;
 }
 
+aside li a.empty {
+    font-style: italic;
+    color: lightgray;
+}
+
 a:hover {
     cursor: pointer;
 }

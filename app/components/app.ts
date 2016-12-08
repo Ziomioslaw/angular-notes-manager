@@ -10,7 +10,7 @@ import { NoteService } from '../services/note';
 })
 export class AppComponent {
     @Input() selectedNote: Note;
-    notes: Note[] = null;
+    notes: Note[];
 
     constructor(private noteService: NoteService) {
     }
