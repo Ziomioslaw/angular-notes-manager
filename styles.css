@@ -11,7 +11,7 @@ header > h1 {
 }
 
 header > span {
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 0;
 }
@@ -52,6 +52,7 @@ aside li a.empty {
 
 a:hover {
     cursor: pointer;
+    color: gray;
 }
 
 

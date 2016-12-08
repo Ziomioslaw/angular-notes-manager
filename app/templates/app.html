@@ -1,7 +1,7 @@
 <section class="app">
     <header>
-        <a (click)="addNote($event)">[New]</a>
-        <a (click)="saveNote($event)">[Save]</a>
+        [<a (click)="addNote($event)">New</a>]
+        [<a (click)="saveNote($event)">Save</a>]
     </header>
     <article>
         <note-detail [note]="selectedNote"></note-detail>
