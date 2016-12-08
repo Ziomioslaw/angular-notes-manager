@@ -6,7 +6,6 @@ import { Note } from '../note';
     selector: 'note-detail',
     templateUrl: '/app/templates/note.detail.html'
 })
-
 export class NoteDetailComponent {
   @Input() note: Note;
 }

@@ -1,5 +1,5 @@
 <ol>
     <li *ngFor="let note of notes" (click)="selectNote(note)" >
-        <a>{{ note.text }}</a>
+        <a>{{ note | noteTitle }}</a>
     </li>
 </ol>

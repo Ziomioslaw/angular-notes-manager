@@ -6,6 +6,8 @@ import { AppComponent } from './components/app';
 import { NoteDetailComponent } from './components/note.detail';
 import { NoteListComponent } from './components/note.list';
 
+import { NoteTitlePipe } from './note.title.pipe';
+
 import { LocalStorageService } from './services/local.storage';
 import { NoteService } from './services/note';
 
@@ -17,7 +19,8 @@ import { NoteService } from './services/note';
     declarations: [
         AppComponent,
         NoteDetailComponent,
-        NoteListComponent
+        NoteListComponent,
+        NoteTitlePipe
     ],
     providers: [
         LocalStorageService,
