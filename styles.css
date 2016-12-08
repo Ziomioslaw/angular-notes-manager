@@ -1,5 +1,38 @@
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+body {
+    margin: 1em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1em;
+}
+
+header > h1 {
+    font-size: 3em;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1em;
+}
+
+header > span {
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+section.app {
+    width: 100%;
+}
+
+section.app > aside {
+    width: 30%;
+    float: right;
+}
+
+section.app > article {
+    width: 69%;
+    float: left;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
 }

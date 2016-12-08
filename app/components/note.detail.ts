@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Note } from 'app/note';
+import { Note } from '../note';
 
 @Component({
     moduleId: module.id,

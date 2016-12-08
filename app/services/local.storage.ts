@@ -1,4 +1,4 @@
-import { Note } from 'app/note';
+import { Note } from '../note';
 
 export class LocalStorageService {
     private static readonly LOCAL_STORAGE_KEY = "notes";

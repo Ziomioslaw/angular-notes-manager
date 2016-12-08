@@ -6,8 +6,8 @@ import { AppComponent } from './components/app';
 import { NoteDetailComponent } from './components/note.detail';
 import { NoteListComponent } from './components/note.list';
 
-import { LocalStorageService } from 'app/services/local.storage';
-import { NoteService } from 'app/services/note';
+import { LocalStorageService } from './services/local.storage';
+import { NoteService } from './services/note';
 
 @NgModule({
     imports: [

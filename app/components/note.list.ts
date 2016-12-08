@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { Note } from 'app/note';
-import { NoteService } from 'app/services/note';
+import { Note } from '../note';
+import { NoteService } from '../services/note';
 
 @Component({
   moduleId: module.id,

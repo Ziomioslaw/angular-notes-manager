@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { Note } from '/app/note';
+import { Note } from '../note';
 
 @Component({
-  selector: 'app',
-  templateUrl: '/app/templates/app.html'
+    selector: 'app',
+    templateUrl: '/app/templates/app.html',
+    styleUrls: [ '/app/styles/app.css' ]
 })
-
 export class AppComponent {
     @Input() selectedNote: Note;
 

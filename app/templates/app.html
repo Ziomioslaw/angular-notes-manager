@@ -1,5 +1,9 @@
-<h1>Notes Manager</h1>
+<section class="app">
+    <article>
+        <note-detail [note]="selectedNote"></note-detail>
+    </article>
 
-<note-list (noteSelectionChange)="selectedNoteChange($event)"></note-list>
-
-<note-detail [note]="selectedNote"></note-detail>
+    <aside>
+        <note-list (noteSelectionChange)="selectedNoteChange($event)"></note-list>
+    </aside>
+</section>
