@@ -6,8 +6,9 @@ import { AppComponent } from './components/app';
 import { NoteDetailComponent } from './components/note.detail';
 import { NoteListComponent } from './components/note.list';
 
-import { NoteTitlePipe } from './note.title.pipe';
+import { NoteTitlePipe } from './pipes/note.title.pipe';
 
+import { IdGeneratorService } from './services/id.generator';
 import { LocalStorageService } from './services/local.storage';
 import { NoteService } from './services/note';
 
@@ -24,6 +25,7 @@ import { NoteService } from './services/note';
     ],
     providers: [
         LocalStorageService,
+        IdGeneratorService,
         NoteService
     ],
     bootstrap: [

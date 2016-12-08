@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Note } from './note';
+import { Note } from '../entities/note';
 
 @Pipe({
     name: 'noteTitle',

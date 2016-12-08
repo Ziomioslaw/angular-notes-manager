@@ -1,4 +1,4 @@
-import { Note } from '../note';
+import { Note } from '../entities/note';
 
 export class LocalStorageService {
     private static readonly LOCAL_STORAGE_KEY = "notes";
@@ -17,6 +17,6 @@ export class LocalStorageService {
 
         let data = JSON.parse(rawData);
 
-        return data.map((r:any) => new Note(r.text));
+        return data.map((r:any) => new Note(r.text, r.id));
     }
 }

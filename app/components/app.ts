@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Note } from '../note';
+import { Note } from '../entities/note';
 import { NoteService } from '../services/note';
 
 @Component({
@@ -18,7 +18,7 @@ export class AppComponent {
     ngOnInit() {
         this.notes = this.noteService.getNotes();
         if (this.notes.length === 0) {
-            this.notes.push(new Note(''));
+            this.notes.push(this.noteService.getNewNotes());
         }
 
         this.selectedNote = this.notes[0];
@@ -29,7 +29,7 @@ export class AppComponent {
     }
 
     addNote(event: any) {
-        const newNote = new Note('');
+        const newNote = this.noteService.getNewNotes();
 
         this.notes.push(newNote);
         this.selectedNoteChange(newNote);

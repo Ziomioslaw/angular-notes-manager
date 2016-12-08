@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 
-import { Note } from '../note';
+import { Note } from '../entities/note';
 
 @Component({
   moduleId: module.id,
