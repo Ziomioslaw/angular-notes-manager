@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { Note } from '../entities/note';
 
+@Injectable()
 export class LocalStorageService {
     private static readonly LOCAL_STORAGE_KEY = "notes";
 

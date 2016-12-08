@@ -1,3 +1,6 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class IdGeneratorService {
     nextId: number = 1;
 
