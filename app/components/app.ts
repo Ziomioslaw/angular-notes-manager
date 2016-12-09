@@ -102,7 +102,7 @@ export class AppComponent {
             );
     }
 
-    private callSaveNoteFromService(note: Note): Promise<Note> {
+    private callSaveNoteFromService(note: Note): Promise<void> {
         if (!this.changeDetector.wasChanged()) {
             return Promise.resolve();
         }
