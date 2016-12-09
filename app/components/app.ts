@@ -20,8 +20,10 @@ export class AppComponent {
     private static readonly INTERVAL_TIME = 5000;
 
     @Input() selectedNote: Note;
+
     notes: Note[] = null;
     isSavingInProgress: boolean = false;
+    changeDetector: ChangeDetector = new ChangeDetector();
 
     constructor(
             private noteService: NoteService,
@@ -41,8 +43,9 @@ export class AppComponent {
     }
 
     selectedNoteChange(note: Note) {
-        this.saveNote(this.selectedNote);
+        this.callSaveNoteFromService(this.selectedNote);
         this.selectedNote = note;
+        this.changeDetector.setNote(note);
     }
 
     deleteNoteFromList(note: Note) {
@@ -60,7 +63,7 @@ export class AppComponent {
         // I used to have a blocked here in case of ongoing saving operation,
         // but I remove it: gives more problems than gets
 
-        this.saveNote(this.selectedNote)
+        this.callSaveNoteFromService(this.selectedNote)
             .then(() => this.startTimeInterval());
     }
 
@@ -88,20 +91,42 @@ export class AppComponent {
         }
 
         this.selectedNote = this.notes[0];
+        this.changeDetector.setNote(this.notes[0]);
     }
 
     private startTimeInterval() {
         this.intervalService.clearInterval();
         this.intervalService.setInterval(
                 AppComponent.INTERVAL_TIME,
-                () => this.saveNote(this.selectedNote)
+                () => this.callSaveNoteFromService(this.selectedNote)
             );
     }
 
-    private saveNote(note: Note): Promise<Note> {
+    private callSaveNoteFromService(note: Note): Promise<Note> {
+        if (!this.changeDetector.wasChanged()) {
+            return Promise.resolve();
+        }
+
         this.isSavingInProgress = true;
 
         return this.noteService.saveNote(note)
-            .then(() => this.isSavingInProgress = false);
+            .then(() => {
+                this.isSavingInProgress = false;
+                this.changeDetector.setNote(this.selectedNote);
+            });
+    }
+}
+
+class ChangeDetector {
+    private originalText: string;
+    private note: Note;
+
+    public setNote(note: Note) {
+        this.originalText = note.text;
+        this.note = note;
+    }
+
+    public wasChanged(): boolean {
+        return this.note.text !== this.originalText;
     }
 }
