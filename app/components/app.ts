@@ -127,6 +127,10 @@ class ChangeDetector {
     }
 
     public wasChanged(): boolean {
+        if (this.note.text === '') { // in case of new object
+            return true;
+        }
+
         return this.note.text !== this.originalText;
     }
 }
