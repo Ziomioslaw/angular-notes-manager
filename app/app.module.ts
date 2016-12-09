@@ -12,6 +12,7 @@ import { LoggerService } from './services/logger';
 import { IntervalService } from './services/interval';
 import { IdGeneratorService } from './services/id.generator';
 import { LocalStorageService } from './services/local.storage';
+import { SilenceLoggerService } from './services/silence.logger';
 import { BrowserInteractionService } from './services/browser.interaction';
 import { NoteService } from './services/note';
 
@@ -27,7 +28,7 @@ import { NoteService } from './services/note';
         NoteTitlePipe
     ],
     providers: [
-        LoggerService,
+        { provide: LoggerService, useClass: SilenceLoggerService },
         LocalStorageService,
         IdGeneratorService,
         NoteService,
