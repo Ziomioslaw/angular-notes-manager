@@ -13,7 +13,7 @@ export class NoteService {
     }
 
     getNotes(): Promise<Note[]> {
-        return Promise.resolve(this.storageService.loadNotes())
+        return this.storageService.loadNotes()
             .then(notes => {
                 notes.forEach(n => this.idGeneratorService.checkNumber(n.id));
 
@@ -22,27 +22,18 @@ export class NoteService {
     }
 
     saveNotes(notes: Note[]): Promise<Note[]> {
-        return new Promise((resolve, reject) => {
-                this.storageService.saveNotes(notes);
-                resolve(notes);
-            });
+        return this.storageService.saveNotes(notes);
     }
 
     saveNote(note: Note): Promise<Note> {
-        return new Promise((resolve, reject) => {
-                this.storageService.saveNote(note);
-                resolve(note);
-            });
+        return this.storageService.saveNote(note);
     }
 
     createNote(): Note {
         return new Note('', this.idGeneratorService.getIdForNew());
     }
 
-    deleteNote(note: Note) {
-        return new Promise((resolve, reject) => {
-                this.storageService.deleteNote(note);
-                resolve(note);
-            });
+    deleteNote(note: Note): Promise<Note> {
+        return this.storageService.deleteNote(note);
     }
 }

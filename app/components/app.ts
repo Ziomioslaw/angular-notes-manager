@@ -57,9 +57,8 @@ export class AppComponent {
     }
 
     saveNoteButtonClick(event: any) {
-        if (this.isSavingInProgress) {
-            return;
-        }
+        // I used to have a blocked here in case of ongoing saving operation,
+        // but I remove it: gives more problems than gets
 
         this.saveNote(this.selectedNote)
             .then(() => this.startTimeInterval());

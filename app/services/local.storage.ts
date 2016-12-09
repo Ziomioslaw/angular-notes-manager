@@ -5,33 +5,47 @@ import { Note } from '../entities/note';
 export class LocalStorageService {
     private static readonly LOCAL_STORAGE_KEY = "notes";
 
-    public saveNotes(notes: Note[]): void {
-        this.saveRawDataIntoLocalStorage(notes);
+    public saveNotes(notes: Note[]): Promise<Note[]> {
+        return new Promise<Note[]>((resolve, reject) => {
+                this.saveRawDataIntoLocalStorage(notes);
+                resolve(notes);
+            });
     }
 
-    public saveNote(note: Note): void {
-        const rawData = this.loadRawDataFromLocalStorage();
-        const rawNote = rawData.find((x:any) => x.id == note.id);
+    public saveNote(note: Note): Promise<Note> {
+        return new Promise<Note>((resolve, reject) => {
+                const rawData = this.loadRawDataFromLocalStorage();
+                const rawNote = rawData.find((x:any) => x.id == note.id);
 
-        if (rawNote) {
-            rawNote.text = note.text;
-        } else {
-            rawData.push(note);
-        }
+                if (rawNote) {
+                    rawNote.text = note.text;
+                } else {
+                    rawData.push(note);
+                }
 
-        this.saveRawDataIntoLocalStorage(rawData);
+                this.saveRawDataIntoLocalStorage(rawData);
+
+                resolve(note);
+            });
     }
 
-    public deleteNote(note: Note): void {
-        const allNotes = this.loadRawDataFromLocalStorage();
-        const noteWithoutOne = allNotes.filter((x:any) => x.id != note.id);
+    public deleteNote(note: Note): Promise<Note> {
+        return new Promise<Note>((resolve, reject) => {
+                const allNotes = this.loadRawDataFromLocalStorage();
+                const noteWithoutOne = allNotes.filter((x:any) => x.id != note.id);
 
-        this.saveRawDataIntoLocalStorage(noteWithoutOne);
+                this.saveRawDataIntoLocalStorage(noteWithoutOne);
+
+                resolve(note);
+            });
     }
 
-    public loadNotes(): Note[] {
-        return this.loadRawDataFromLocalStorage()
-            .map((r:any) => new Note(r.text, r.id));
+    public loadNotes(): Promise<Note[]> {
+        return new Promise<Note[]>((resolve, reject) => {
+                resolve(this.loadRawDataFromLocalStorage()
+                    .map((r:any) => new Note(r.text, r.id))
+                );
+            });
     }
 
     private loadRawDataFromLocalStorage(): any[] {
