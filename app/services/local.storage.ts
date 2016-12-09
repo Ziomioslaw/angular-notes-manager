@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../entities/note';
+import { LoggerService } from './logger';
 
 @Injectable()
 export class LocalStorageService {
     private static readonly LOCAL_STORAGE_KEY = "notes";
 
+    constructor(
+            private loggerService: LoggerService
+        ) {
+    }
+
     public saveNotes(notes: Note[]): Promise<Note[]> {
         return new Promise<Note[]>((resolve, reject) => {
+                this.loggerService.log('Save notes: ', notes);
+
                 this.saveRawDataIntoLocalStorage(notes);
                 resolve(notes);
             });
@@ -14,6 +22,8 @@ export class LocalStorageService {
 
     public saveNote(note: Note): Promise<Note> {
         return new Promise<Note>((resolve, reject) => {
+                this.loggerService.log('Save note: ', note);
+
                 const rawData = this.loadRawDataFromLocalStorage();
                 const rawNote = rawData.find((x:any) => x.id == note.id);
 
@@ -31,8 +41,10 @@ export class LocalStorageService {
 
     public deleteNote(note: Note): Promise<Note> {
         return new Promise<Note>((resolve, reject) => {
-                const allNotes = this.loadRawDataFromLocalStorage();
-                const noteWithoutOne = allNotes.filter((x:any) => x.id != note.id);
+                this.loggerService.log('Delete note: ', note);
+
+                let allNotes = this.loadRawDataFromLocalStorage();
+                let noteWithoutOne = allNotes.filter((x:any) => x.id != note.id);
 
                 this.saveRawDataIntoLocalStorage(noteWithoutOne);
 
@@ -42,6 +54,8 @@ export class LocalStorageService {
 
     public loadNotes(): Promise<Note[]> {
         return new Promise<Note[]>((resolve, reject) => {
+                this.loggerService.log('Load notes');
+
                 resolve(this.loadRawDataFromLocalStorage()
                     .map((r:any) => new Note(r.text, r.id))
                 );

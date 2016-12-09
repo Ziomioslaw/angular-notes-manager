@@ -8,6 +8,7 @@ import { NoteListComponent } from './components/note.list';
 
 import { NoteTitlePipe } from './pipes/note.title.pipe';
 
+import { LoggerService } from './services/logger';
 import { IntervalService } from './services/interval';
 import { IdGeneratorService } from './services/id.generator';
 import { LocalStorageService } from './services/local.storage';
@@ -26,6 +27,7 @@ import { NoteService } from './services/note';
         NoteTitlePipe
     ],
     providers: [
+        LoggerService,
         LocalStorageService,
         IdGeneratorService,
         NoteService,
