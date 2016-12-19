@@ -1,5 +1,3 @@
-<ol>
-    <li *ngFor="let image of images">
-        <img src="{{ image }}" />
-    </li>
-</ol>
+<a *ngFor="let image of images" href="{{ image }}" target="_blank">
+    <img src="{{ image }}" />
+</a>

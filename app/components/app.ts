@@ -29,6 +29,11 @@ export class AppComponent {
         'http://lorempixel.com/234/934/',
         'http://lorempixel.com/230/100/',
         'http://lorempixel.com/700/400/',
+        'http://lorempixel.com/401/201/',
+        'http://lorempixel.com/764/442/',
+        'http://lorempixel.com/344/834/',
+        'http://lorempixel.com/230/150/',
+        'http://lorempixel.com/700/400/',
     ];
     changeDetector: ChangeDetector = new ChangeDetector();
 
