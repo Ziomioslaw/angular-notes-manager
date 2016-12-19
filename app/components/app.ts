@@ -23,6 +23,13 @@ export class AppComponent {
 
     notes: Note[] = null;
     isSavingInProgress: boolean = false;
+    images: string[] = [
+        'http://lorempixel.com/400/200/',
+        'http://lorempixel.com/734/402/',
+        'http://lorempixel.com/234/934/',
+        'http://lorempixel.com/230/100/',
+        'http://lorempixel.com/700/400/',
+    ];
     changeDetector: ChangeDetector = new ChangeDetector();
 
     constructor(
