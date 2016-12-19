@@ -21,8 +21,7 @@ a:hover {
     color: gray;
 }
 
-footer {
-    clear: both;
+body > footer {
     text-align: center;
     width: 100%;
     font-size: 0.6em;

@@ -33,7 +33,7 @@ export class AppComponent {
         'http://lorempixel.com/764/442/',
         'http://lorempixel.com/344/834/',
         'http://lorempixel.com/230/150/',
-        'http://lorempixel.com/700/400/',
+        'http://lorempixel.com/712/441/',
     ];
     changeDetector: ChangeDetector = new ChangeDetector();
 
