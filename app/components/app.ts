@@ -23,18 +23,7 @@ export class AppComponent {
 
     notes: Note[] = null;
     isSavingInProgress: boolean = false;
-    images: string[] = [
-        'http://lorempixel.com/400/200/',
-        'http://lorempixel.com/734/402/',
-        'http://lorempixel.com/234/934/',
-        'http://lorempixel.com/230/100/',
-        'http://lorempixel.com/700/400/',
-        'http://lorempixel.com/401/201/',
-        'http://lorempixel.com/764/442/',
-        'http://lorempixel.com/344/834/',
-        'http://lorempixel.com/230/150/',
-        'http://lorempixel.com/712/441/',
-    ];
+    images: string[] = [];
     changeDetector: ChangeDetector = new ChangeDetector();
 
     constructor(
@@ -120,12 +109,25 @@ export class AppComponent {
         }
 
         this.isSavingInProgress = true;
+        this.images = this.findAllPicturesInText(this.selectedNote.text);
 
         return this.noteService.saveNote(note)
             .then(() => {
                 this.isSavingInProgress = false;
                 this.changeDetector.setNote(this.selectedNote);
             });
+    }
+
+    private findAllPicturesInText(text: string) {
+        const pattern = /https?:\/\/?[^'"<>]+?\.(jpg|jpeg|gif|png)/g;
+        const results = Array<string>();
+        let found = null;
+
+        while (found = pattern.exec(text)) {
+            results.push(found[0]);
+        }
+
+        return results;
     }
 }
 
