@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './components/app';
 import { NoteDetailComponent } from './components/note.detail';
 import { NoteListComponent } from './components/note.list';
+import { ImagesListComponent } from './components/images.list'
 
 import { NoteTitlePipe } from './pipes/note.title.pipe';
 
@@ -25,6 +26,7 @@ import { NoteService } from './services/note';
         AppComponent,
         NoteDetailComponent,
         NoteListComponent,
+        ImagesListComponent,
         NoteTitlePipe
     ],
     providers: [
