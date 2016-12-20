@@ -1,6 +1,6 @@
 {
   "name": "angular-notes-manager",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "'Homework' task",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
