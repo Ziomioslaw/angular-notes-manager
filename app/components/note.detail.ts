@@ -8,6 +8,8 @@ import { Note } from '../entities/note';
     styleUrls: [ '../styles/note.detail.css' ]
 })
 export class NoteDetailComponent implements OnChanges {
+    private readonly pattern = /https?:\/\/?[^'"<>]+?\.(jpg|jpeg|gif|png|bmp)/gi;
+
     @Input() note: Note;
 
     images: string[] = [];
@@ -26,12 +28,11 @@ export class NoteDetailComponent implements OnChanges {
     }
 
     private findAllPicturesInText(text: string) {
-        const pattern = /https?:\/\/?[^'"<>]+?\.(jpg|jpeg|gif|png)/gi;
         const results = Array<string>();
         let found = null;
         let url = null;
 
-        while (found = pattern.exec(text)) {
+        while (found = this.pattern.exec(text)) {
             url = found[0]
             if (results.indexOf(url) == -1) {
                 results.push(url);
