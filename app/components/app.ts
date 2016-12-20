@@ -23,7 +23,6 @@ export class AppComponent {
 
     notes: Note[] = null;
     isSavingInProgress: boolean = false;
-    images: string[] = [];
     changeDetector: ChangeDetector = new ChangeDetector();
 
     constructor(
@@ -109,25 +108,12 @@ export class AppComponent {
         }
 
         this.isSavingInProgress = true;
-        this.images = this.findAllPicturesInText(this.selectedNote.text);
 
         return this.noteService.saveNote(note)
             .then(() => {
                 this.isSavingInProgress = false;
                 this.changeDetector.setNote(this.selectedNote);
             });
-    }
-
-    private findAllPicturesInText(text: string) {
-        const pattern = /https?:\/\/?[^'"<>]+?\.(jpg|jpeg|gif|png)/g;
-        const results = Array<string>();
-        let found = null;
-
-        while (found = pattern.exec(text)) {
-            results.push(found[0]);
-        }
-
-        return results;
     }
 }
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Note } from '../entities/note';
 
 @Component({
@@ -7,10 +7,37 @@ import { Note } from '../entities/note';
     templateUrl: '/app/templates/note.detail.html',
     styleUrls: [ '../styles/note.detail.css' ]
 })
-export class NoteDetailComponent {
-  @Input() note: Note;
+export class NoteDetailComponent implements OnChanges {
+    @Input() note: Note;
 
-  onKey(event: any): void {
-      this.note.text = event.target.value;
-  }
+    images: string[] = [];
+
+    onKey(event: any): void {
+        this.note.text = event.target.value;
+        this.images = this.findAllPicturesInText(this.note.text);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        this.refreshImagesFromNote();
+    }
+
+    private refreshImagesFromNote() {
+        this.images = this.findAllPicturesInText(this.note.text);
+    }
+
+    private findAllPicturesInText(text: string) {
+        const pattern = /https?:\/\/?[^'"<>]+?\.(jpg|jpeg|gif|png)/gi;
+        const results = Array<string>();
+        let found = null;
+        let url = null;
+
+        while (found = pattern.exec(text)) {
+            url = found[0]
+            if (results.indexOf(url) == -1) {
+                results.push(url);
+            }
+        }
+
+        return results;
+    }
 }

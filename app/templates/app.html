@@ -8,15 +8,10 @@
         <note-detail [note]="selectedNote"></note-detail>
     </article>
     <aside>
-        <note-list
-            [notes]="notes"
-            [selectedNote]="selectedNote"
-            (noteSelectionChange)="selectedNoteChange($event)"
-            (noteDeleted)="deleteNoteFromList($event)"
-        >
+        <note-list [notes]="notes"
+                   [selectedNote]="selectedNote"
+                   (noteSelectionChange)="selectedNoteChange($event)"
+                   (noteDeleted)="deleteNoteFromList($event)">
         </note-list>
     </aside>
-    <footer>
-        <images-list [images]="images" ></images-list>
-    </footer>
 </section>
